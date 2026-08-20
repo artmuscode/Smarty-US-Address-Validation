@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Custom. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Custom\SmartyAddressValidation\Api\Data\AddressValidationRequestInterface" type="Custom\SmartyAddressValidation\Model\Data\AddressValidationRequest"/>
+    <preference for="Custom\SmartyAddressValidation\Api\Data\AddressValidationResultInterface" type="Custom\SmartyAddressValidation\Model\Data\AddressValidationResult"/>
+    <preference for="Custom\SmartyAddressValidation\Api\Data\AddressSuggestionInterface" type="Custom\SmartyAddressValidation\Model\Data\AddressSuggestion"/>
+    <preference for="Custom\SmartyAddressValidation\Model\Smarty\ClientFactoryInterface" type="Custom\SmartyAddressValidation\Model\Smarty\ClientFactory"/>
+    <preference for="Custom\SmartyAddressValidation\Model\Smarty\AutocompleteGatewayInterface" type="Custom\SmartyAddressValidation\Model\Smarty\AutocompleteGateway"/>
+    <preference for="Custom\SmartyAddressValidation\Model\Smarty\ValidationGatewayInterface" type="Custom\SmartyAddressValidation\Model\Smarty\ValidationGateway"/>
+    <preference for="Custom\SmartyAddressValidation\Api\AddressAutocompleteInterface" type="Custom\SmartyAddressValidation\Model\AddressAutocomplete"/>
+    <preference for="Custom\SmartyAddressValidation\Api\AddressValidatorInterface" type="Custom\SmartyAddressValidation\Model\AddressValidator"/>
+    <preference for="Custom\SmartyAddressValidation\Api\Data\AddressGeoDataInterface" type="Custom\SmartyAddressValidation\Model\Data\AddressGeoData"/>
+
+    <!--
+        Carries Smarty delivery metadata from checkout, onto the order, and out to the REST API.
+        Declared globally rather than under frontend: the storefront reaches saveAddressInformation
+        over REST, which is served in the webapi_rest area.
+    -->
+    <type name="Magento\Checkout\Api\ShippingInformationManagementInterface">
+        <plugin name="custom_smarty_address_validation_capture_quote_address_geo_data"
+                type="Custom\SmartyAddressValidation\Plugin\CaptureQuoteAddressGeoDataPlugin"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Address\ToOrderAddress">
+        <plugin name="custom_smarty_address_validation_copy_geo_data_to_order_address"
+                type="Custom\SmartyAddressValidation\Plugin\CopyGeoDataToOrderAddressPlugin"/>
+    </type>
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="custom_smarty_address_validation_order_address_geo_data_extension"
+                type="Custom\SmartyAddressValidation\Plugin\OrderAddressGeoDataExtensionPlugin"/>
+    </type>
+</config>

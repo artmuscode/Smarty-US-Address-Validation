@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Custom. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <!-- Surfaces the Smarty delivery metadata on GET /V1/orders/{id} for downstream ERP consumers. -->
+    <extension_attributes for="Magento\Sales\Api\Data\OrderAddressInterface">
+        <attribute code="smarty_rdi" type="string"/>
+        <attribute code="smarty_latitude" type="float"/>
+        <attribute code="smarty_longitude" type="float"/>
+        <attribute code="smarty_geo_precision" type="string"/>
+    </extension_attributes>
+</config>

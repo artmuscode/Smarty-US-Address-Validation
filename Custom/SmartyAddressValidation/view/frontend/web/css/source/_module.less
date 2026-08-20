@@ -1,0 +1,130 @@
+// /**
+//  * Copyright © Custom. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@smarty-dropdown__background: @color-white;
+@smarty-dropdown__border-color: @color-gray68;
+@smarty-dropdown-item__hover-background: @color-gray-light01;
+@smarty-dropdown__z-index: 20;
+@smarty-overlay__z-index: 900;
+
+//
+//  Autocomplete dropdown
+//  _____________________________________________
+
+//  The component is injected into shipping-address-fieldset immediately after the street field
+//  (LayoutProcessorPlugin sets its sortOrder), so anchoring the list to this wrapper's own flow
+//  position puts it directly beneath the street input without needing to target the input itself.
+.smarty-autocomplete-dropdown {
+    position: relative;
+    z-index: @smarty-dropdown__z-index;
+}
+
+.smarty-autocomplete-dropdown-list {
+    background: @smarty-dropdown__background;
+    border: 1px solid @smarty-dropdown__border-color;
+    border-top: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .18);
+    left: 0;
+    list-style: none;
+    margin: 0;
+    max-height: 20rem;
+    overflow-y: auto;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: -@indent__s;
+}
+
+.smarty-autocomplete-dropdown-item {
+    cursor: pointer;
+    line-height: 1.4;
+    margin: 0;
+    padding: @indent__xs @indent__s;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid @color-gray89;
+    }
+
+    &:hover,
+    &.smarty-autocomplete-dropdown-item-active {
+        background: @smarty-dropdown-item__hover-background;
+    }
+}
+
+//
+//  Address comparison panel
+//  _____________________________________________
+
+.smarty-address-comparison {
+    align-items: center;
+    background: rgba(0, 0, 0, .5);
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    padding: @indent__base;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: @smarty-overlay__z-index;
+}
+
+.smarty-address-comparison-modal {
+    background: @color-white;
+    border-radius: 3px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+    max-height: 90vh;
+    max-width: 60rem;
+    overflow-y: auto;
+    padding: @indent__base;
+    width: 100%;
+}
+
+.smarty-address-comparison-title {
+    .lib-font-size(18);
+    font-weight: @font-weight__semibold;
+    margin-bottom: @indent__base;
+}
+
+.smarty-address-comparison-option {
+    border: 1px solid @color-gray89;
+    margin-bottom: @indent__s;
+    padding: @indent__s;
+}
+
+.smarty-address-comparison-option-label {
+    font-weight: @font-weight__semibold;
+    margin-bottom: @indent__xs;
+}
+
+.smarty-address-comparison-address {
+    font-style: normal;
+    margin-bottom: @indent__s;
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .smarty-address-comparison-options {
+        display: flex;
+        gap: @indent__base;
+    }
+
+    .smarty-address-comparison-option {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+    }
+
+    .smarty-address-comparison-address {
+        flex: 1 1 auto;
+    }
+}

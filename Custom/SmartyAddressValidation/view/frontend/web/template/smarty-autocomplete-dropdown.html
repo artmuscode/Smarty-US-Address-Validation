@@ -1,0 +1,21 @@
+<!--
+/**
+ * Copyright © Custom. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="smarty-autocomplete-dropdown" data-bind="visible: isDropdownVisible" role="listbox">
+    <ul class="smarty-autocomplete-dropdown-list" data-bind="foreach: { data: suggestions, as: 'suggestion' }">
+        <!-- ko let: { suggestionIndex: $index() } -->
+        <li class="smarty-autocomplete-dropdown-item"
+            role="option"
+            data-bind="
+                click: function () { $parent.selectSuggestion(suggestion); },
+                mouseover: function () { $parent.activeIndex(suggestionIndex); },
+                css: { 'smarty-autocomplete-dropdown-item-active': $parent.isActive(suggestionIndex) }
+            ">
+            <span data-bind="text: $parent.formatSuggestion(suggestion)"></span>
+        </li>
+        <!-- /ko -->
+    </ul>
+</div>

@@ -1,0 +1,18 @@
+{
+    "quote_address": {
+        "column": {
+            "smarty_rdi": true,
+            "smarty_latitude": true,
+            "smarty_longitude": true,
+            "smarty_geo_precision": true
+        }
+    },
+    "sales_order_address": {
+        "column": {
+            "smarty_rdi": true,
+            "smarty_latitude": true,
+            "smarty_longitude": true,
+            "smarty_geo_precision": true
+        }
+    }
+}

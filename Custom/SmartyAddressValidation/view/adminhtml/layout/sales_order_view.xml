@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Custom. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- order_additional_info is Magento_Sales' designated extension point on the order view. -->
+        <referenceContainer name="order_additional_info">
+            <block class="Custom\SmartyAddressValidation\Block\Adminhtml\Order\View\DeliveryMetadata"
+                   name="custom_smarty_address_validation_delivery_metadata"
+                   template="Custom_SmartyAddressValidation::order/view/delivery-metadata.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

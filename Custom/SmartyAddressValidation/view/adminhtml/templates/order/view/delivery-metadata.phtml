@@ -1,0 +1,44 @@
+<?php
+/**
+ * Copyright © Custom. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+declare(strict_types=1);
+
+/** @var \Custom\SmartyAddressValidation\Block\Adminhtml\Order\View\DeliveryMetadata $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+if (!$block->hasDeliveryMetadata()) {
+    return;
+}
+?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $escaper->escapeHtml(__('Smarty Delivery Metadata')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <table class="admin__table-secondary">
+            <tbody>
+            <?php if ($block->getRdi() !== null): ?>
+                <tr>
+                    <th><?= $escaper->escapeHtml(__('Address Type')) ?></th>
+                    <td><?= $escaper->escapeHtml($block->getRdi()) ?></td>
+                </tr>
+            <?php endif; ?>
+            <?php if ($block->getCoordinates() !== null): ?>
+                <tr>
+                    <th><?= $escaper->escapeHtml(__('Coordinates')) ?></th>
+                    <td><?= $escaper->escapeHtml($block->getCoordinates()) ?></td>
+                </tr>
+            <?php endif; ?>
+            <?php if ($block->getGeoPrecision() !== null): ?>
+                <tr>
+                    <th><?= $escaper->escapeHtml(__('Coordinate Precision')) ?></th>
+                    <td><?= $escaper->escapeHtml($block->getGeoPrecision()) ?></td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Custom. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!--
+        Smarty delivery metadata captured during checkout. Held on the quote address first so that
+        placing an order is a pure copy and never has to make an outbound API call.
+    -->
+    <table name="quote_address" resource="checkout" engine="innodb">
+        <column xsi:type="varchar" name="smarty_rdi" nullable="true" length="16"
+                comment="Smarty residential delivery indicator: residential, commercial or null"/>
+        <column xsi:type="decimal" name="smarty_latitude" scale="7" precision="10" nullable="true"
+                comment="Smarty latitude of the delivery point"/>
+        <column xsi:type="decimal" name="smarty_longitude" scale="7" precision="10" nullable="true"
+                comment="Smarty longitude of the delivery point"/>
+        <column xsi:type="varchar" name="smarty_geo_precision" nullable="true" length="16"
+                comment="Smarty coordinate precision, e.g. Zip5, Zip9, Rooftop"/>
+    </table>
+    <table name="sales_order_address" resource="sales" engine="innodb">
+        <column xsi:type="varchar" name="smarty_rdi" nullable="true" length="16"
+                comment="Smarty residential delivery indicator: residential, commercial or null"/>
+        <column xsi:type="decimal" name="smarty_latitude" scale="7" precision="10" nullable="true"
+                comment="Smarty latitude of the delivery point"/>
+        <column xsi:type="decimal" name="smarty_longitude" scale="7" precision="10" nullable="true"
+                comment="Smarty longitude of the delivery point"/>
+        <column xsi:type="varchar" name="smarty_geo_precision" nullable="true" length="16"
+                comment="Smarty coordinate precision, e.g. Zip5, Zip9, Rooftop"/>
+    </table>
+</schema>

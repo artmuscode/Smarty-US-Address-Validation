@@ -1,0 +1,53 @@
+<!--
+/**
+ * Copyright © Custom. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="smarty-address-comparison" data-bind="visible: isVisible" style="display: none">
+    <div class="smarty-address-comparison-modal" role="dialog" aria-modal="true">
+        <div class="smarty-address-comparison-title" translate="'We found a suggested address'"></div>
+        <!-- ko if: enteredAddress() && suggestedAddress() -->
+        <div class="smarty-address-comparison-options">
+            <div class="smarty-address-comparison-option">
+                <div class="smarty-address-comparison-option-label" translate="'You entered'"></div>
+                <address class="smarty-address-comparison-address" data-bind="with: enteredAddress">
+                    <span data-bind="text: street"></span><br/>
+                    <!-- Addressed via $data: the validate endpoint omits street2 entirely when it is
+                         null, and a bare property reference inside `with:` throws a ReferenceError. -->
+                    <!-- ko if: $data.street2 -->
+                    <span data-bind="text: $data.street2"></span><br/>
+                    <!-- /ko -->
+                    <span data-bind="text: city"></span>,
+                    <span data-bind="text: region_code"></span>
+                    <span data-bind="text: postcode"></span>
+                </address>
+                <button type="button"
+                        class="action action-secondary smarty-address-comparison-choose-entered"
+                        data-bind="click: chooseEntered">
+                    <span translate="'Use as entered'"></span>
+                </button>
+            </div>
+            <div class="smarty-address-comparison-option">
+                <div class="smarty-address-comparison-option-label" translate="'We suggest'"></div>
+                <address class="smarty-address-comparison-address" data-bind="with: suggestedAddress">
+                    <span data-bind="text: street"></span><br/>
+                    <!-- Addressed via $data: the validate endpoint omits street2 entirely when it is
+                         null, and a bare property reference inside `with:` throws a ReferenceError. -->
+                    <!-- ko if: $data.street2 -->
+                    <span data-bind="text: $data.street2"></span><br/>
+                    <!-- /ko -->
+                    <span data-bind="text: city"></span>,
+                    <span data-bind="text: region_code"></span>
+                    <span data-bind="text: postcode"></span>
+                </address>
+                <button type="button"
+                        class="action action-primary smarty-address-comparison-choose-suggested"
+                        data-bind="click: chooseSuggested">
+                    <span translate="'Use this address'"></span>
+                </button>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+</div>
