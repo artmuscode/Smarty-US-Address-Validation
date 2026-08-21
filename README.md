@@ -7,7 +7,7 @@ their entered address is validated/standardized against Smarty and, if a
 correction is proposed, they can compare "as entered" vs. "Smarty suggests"
 and pick either.
 
-Module Requires Smarty SDK
+Module Requires Smarty SDK:
 composer require smartystreets/phpsdk
 
 ## What it does
